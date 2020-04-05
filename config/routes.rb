@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   resources :shows
-  resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users do
+    resources :reviews, only: [:index, :show, :new, :create, :edit, :update]
+    resources :shows, only: [:index, :show]
+  end
+  resources :composers
+  resources :genres
 end
