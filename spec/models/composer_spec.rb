@@ -43,4 +43,14 @@ RSpec.describe Composer, type: :model do
     )
     expect(@composer).to_not be_valid
   end
+
+  it "is not valid with a non-unique name" do
+    composer2 = Composer.create(
+      name: "Giuseppe Verdi",
+      birth_year: 1812,
+      death_year: 1900,
+      country: "Italia"
+    )
+    expect(composer2).to_not be_valid
+  end
 end
