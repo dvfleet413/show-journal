@@ -31,6 +31,9 @@ RSpec.describe Show, type: :model do
             @genre = Genre.create(name: "Tragedy")
             @genre_two = Genre.create(name: "Comedy")
             @show = Show.create(title: "Don Carlo", first_performance_year: 1876, composer_id: @composer.id, genre_id: @genre.id)
+            @user = User.create(username: Faker::Internet.username, email: Faker::Internet.email, password: Faker::Internet.password)
+            @viewing = Viewing.create(date: Date.today, location: Faker::Address.city, user_id: @user.id, show_id: @show.id)
+            @review = Review.create(body: "This show was awesome!", rating: 5, viewing_id: @viewing.id)
           end
     
         it "belongs_to one composer" do 
@@ -43,6 +46,17 @@ RSpec.describe Show, type: :model do
             expect(@show.genre).to_not eq(@genre_two)
         end
 
+        it "has_many viewings" do
+            expect(@show.viewings).to include(@viewing)
+        end
+
+        it "has_many users through viewings" do
+            expect(@show.users).to include(@user)
+        end
+
+        it "has_many reviews through viewings" do
+            expect(@show.reviews).to include(@review)
+        end
 
 
     end
