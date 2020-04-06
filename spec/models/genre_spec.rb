@@ -12,6 +12,12 @@ RSpec.describe Genre, type: :model do
             @genre = Genre.new(name: nil)
             expect(@genre).to_not be_valid 
         end
+
+        it "is not valid with a non-unique name" do
+            @genre = Genre.create(name: "Opera - Tragedy")
+            @genre_two = Genre.new(name: "Opera - Tragedy")
+            expect(@genre_two).to_not be_valid
+        end
     end
 
     describe "Associations" do
