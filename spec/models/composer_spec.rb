@@ -46,7 +46,7 @@ RSpec.describe Composer, type: :model do
     end
 
     it "is not valid with a non-unique name" do
-      composer2 = Composer.create(
+      composer_two = Composer.create(
         name: "Giuseppe Verdi",
         birth_year: 1812,
         death_year: 1900,
@@ -57,51 +57,22 @@ RSpec.describe Composer, type: :model do
   end
 
   describe "Associations" do
-    let(:composer) {
-      Composer.create(
-        name: "Giuseppe Verdi",
-        birth_year: 1813,
-        death_year: 1901,
-        country: "Italy"
-      )
-    }
-    let(:genre) {
-      Genre.create(
-        name: "Tragedy"
-      )
-    }
-    let(:genre_two) {
-      Genre.create(
-        name: "Comedy"
-      )
-    }
-    let(:show) {
-      Show.create(
-        title: "Don Carlo",
-        first_performance_year: 1876,
-        composer_id: composer.id,
-        genre_id: genre.id
-      )
-    }
-
-    let(:show_two) {
-      Show.create(
-        title: "Falstaff",
-        first_performance_year: 1893,
-        composer_id: composer.id,
-        genre_id: genre_two.id
-      )
-    }
-
+    before(:each) do 
+      @composer = Composer.create(name: "Giuseppe Verdi", birth_year: 1813, death_year: 1901, country: "Italy")
+      @genre = Genre.create(name: "Tragedy")
+      @genre_two = Genre.create(name: "Comedy")
+      @show = Show.create(title: "Don Carlo", first_performance_year: 1876, composer_id: @composer.id, genre_id: @genre.id)
+      @show_two = Show.create(title: "Falstaff", first_performance_year: 1893, composer_id: @composer.id, genre_id: @genre_two.id)
+    end
 
     it "has_many shows" do
-      expect(composer.shows).to include(show)
-      expect(composer.shows).to include(show_two)
+      expect(@composer.shows).to include(@show)
+      expect(@composer.shows).to include(@show_two)
     end
 
     it "has_many genres through shows" do
-      expect(composer.genres).to include(genre)
-      expect(composer.genres).to include(genre_two)
+      expect(@composer.genres).to include(@genre)
+      expect(@composer.genres).to include(@genre_two)
     end
 
   end
