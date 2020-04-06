@@ -33,7 +33,26 @@ RSpec.describe Review, type: :model do
     end
 
     describe "Associations" do
+        before(:each) do
+            @composer = Composer.create(name: "Giuseppe Verdi", birth_year: 1813, death_year: 1901, country: "Italy")
+            @genre = Genre.create(name: "Tragedy")
+            @show = Show.create(title: "Don Carlo", first_performance_year: 1876, composer_id: @composer.id, genre_id: @genre.id)
+            @user = User.create(username: Faker::Internet.username, email: Faker::Internet.email, password: Faker::Internet.password)
+            @viewing = Viewing.create(date: Date.today, location: Faker::Address.city, user_id: @user.id, show_id: @show.id)
+            @review = Review.create(body: "This show was awesome!", rating: 5, viewing_id: @viewing.id)
+        end
 
+        it "belongs_to a viewing" do
+            expect(@review.viewing).to eq(@viewing)
+        end
+
+        it "has_one user through a viewing" do
+            expect(@review.user).to eq(@user)
+        end
+
+        it "has_one show through a viewing" do
+            expect(@review.show).to eq(@show)
+        end
 
 
     end
