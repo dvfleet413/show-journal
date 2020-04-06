@@ -2,57 +2,45 @@ require 'rails_helper'
 
 RSpec.describe Composer, type: :model do
   describe "Validations" do 
-    let(:composer) {
-      Composer.create(
-        name: "Giuseppe Verdi",
-        birth_year: 1813,
-        death_year: 1901,
-        country: "Italy"
-      )
-    }
-
-    it "is valid with a name, birth_year, death_year, and country" do
-      expect(composer).to be_valid
+    before(:each) do
+      @composer = Composer.create(name: "Giuseppe Verdi", birth_year: 1813, death_year: 1901, country: "Italy")
     end
 
-    it "is not valid without name, birth_year, death_year, or country" do
-      @composer = Composer.create(
+    it "is valid with a name, birth_year, death_year, and country" do
+      expect(@composer).to be_valid
+    end
+
+    it "is not valid without name, birth_year, or country" do
+      @nameless_composer = Composer.create(
         birth_year: 1813,
         death_year: 1901,
         country: "Italy"
       )
-      expect(@composer).to_not be_valid
+      expect(@nameless_composer).to_not be_valid
 
-      @composer = Composer.create(
+      @birthless_composer = Composer.create(
         name: "Giuseppe Verdi",
         death_year: 1901,
         country: "Italy"
       )
-      expect(@composer).to_not be_valid
+      expect(@birthless_composer).to_not be_valid
 
-      @composer = Composer.create(
-        name: "Giuseppe Verdi",
-        birth_year: 1813,
-        country: "Italy"
-      )
-      expect(@composer).to_not be_valid
-
-      @composer = Composer.create(
+      @homeless_composer = Composer.create(
         name: "Giuseppe Verdi",
         birth_year: 1813,
         death_year: 1901
       )
-      expect(@composer).to_not be_valid
+      expect(@homeless_composer).to_not be_valid
     end
 
     it "is not valid with a non-unique name" do
-      composer_two = Composer.create(
+      @composer_two = Composer.new(
         name: "Giuseppe Verdi",
         birth_year: 1812,
         death_year: 1900,
         country: "Italia"
       )
-      expect(composer2).to_not be_valid
+      expect(@composer_two).to_not be_valid
     end
   end
 
