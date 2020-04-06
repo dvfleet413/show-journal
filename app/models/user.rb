@@ -7,7 +7,9 @@ class User < ApplicationRecord
     has_many :reviews, through: :viewings
 
 
-
+    def composers 
+        shows.map {|show| show.composer }
+    end
 
 
 #  Idea for simple model instance method to list all composers that user has seen
