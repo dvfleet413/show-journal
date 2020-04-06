@@ -6,6 +6,8 @@ class Show < ApplicationRecord
   has_many :reviews, through: :viewings
   validates_presence_of :title, :first_performance_year
 
+  scope :from_nineteenth_century, -> { where("first_performance_year >= ? AND first_performance_year < ?", 1800, 1900) }
+
 
 #  idea for class level scoped 
 #    def self.from_nineteenth_century

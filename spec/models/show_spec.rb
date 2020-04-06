@@ -58,4 +58,23 @@ RSpec.describe Show, type: :model do
             expect(@show.reviews).to include(@review)
         end
     end
+
+    describe "Custom Methods" do
+        before(:each) do
+            @composer = Composer.create(name: "Giuseppe Verdi", birth_year: 1813, death_year: 1901, country: "Italy")
+            @composer_two = Composer.create(name: "Giacomo Puccini", birth_year: 1858, death_year: 1924, country: "Italy")
+            @genre = Genre.create(name: "Tragedy")
+            @genre_two = Genre.create(name: "Comedy")
+            @show = Show.create(title: "Don Carlo", first_performance_year: 1876, composer_id: @composer.id, genre_id: @genre.id)
+            @show_two = Show.create(title: "La fanciulla del West", first_performance_year: 1910, composer_id: @composer_two.id, genre_id: @genre_two.id)
+        end
+
+        it "has a scope model class method .from_nineteenth_century that returns shows with first performance in 1800s" do
+            expect(Show.from_nineteenth_century).to include(@show)
+            expect(Show.from_nineteenth_century).to_not include(@show_two)
+        end
+
+
+
+    end
 end
