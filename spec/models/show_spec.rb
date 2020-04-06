@@ -67,14 +67,19 @@ RSpec.describe Show, type: :model do
             @genre_two = Genre.create(name: "Comedy")
             @show = Show.create(title: "Don Carlo", first_performance_year: 1876, composer_id: @composer.id, genre_id: @genre.id)
             @show_two = Show.create(title: "La fanciulla del West", first_performance_year: 1910, composer_id: @composer_two.id, genre_id: @genre_two.id)
+            @show_three = Show.create(title: "Falstaff", first_performance_year: 1893, composer_id: @composer.id, genre_id: @genre.id)
         end
 
         it "has a scope model class method .from_nineteenth_century that returns shows with first performance in 1800s" do
             expect(Show.from_nineteenth_century).to include(@show)
+            expect(Show.from_nineteenth_century).to include(@show_three)
             expect(Show.from_nineteenth_century).to_not include(@show_two)
         end
 
-
-
+        it ".from_nineteenth_century is chainable" do
+            expect(Show.from_nineteenth_century.select{|show| show.first_performance_year == 1876}).to include(@show)
+            expect(Show.from_nineteenth_century.select{|show| show.first_performance_year == 1876}).to_not include(@show_two)
+            expect(Show.from_nineteenth_century.select{|show| show.first_performance_year == 1876}).to_not include(@show_three)
+        end 
     end
 end
