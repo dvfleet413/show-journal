@@ -1,0 +1,6 @@
+<h1>All Composers</h1>
+<ul>
+    <% @composers.each do |composer| %>
+        <li><%= link_to composer.name, composer_path(composer) %></li>
+    <% end %>
+</ul>

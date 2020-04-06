@@ -1,0 +1,8 @@
+<h1><%= @composer.name %></h1>
+
+<h3>Shows:</h3>
+<ul>
+    <% @composer.shows.each do |show| %>
+        <li><%= link_to show.title, show_path(show) %></li>
+    <% end %>
+</ul>
