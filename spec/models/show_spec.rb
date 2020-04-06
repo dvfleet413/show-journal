@@ -32,7 +32,17 @@ RSpec.describe Show, type: :model do
             @genre_two = Genre.create(name: "Comedy")
             @show = Show.create(title: "Don Carlo", first_performance_year: 1876, composer_id: @composer.id, genre_id: @genre.id)
           end
-        
+    
+        it "belongs_to one composer" do 
+            expect(@show.composer).to eq(@composer)
+            expect(@show.composer).to_not eq(@composer_two)
+        end
+
+        it "belongs_to one genre" do
+            expect(@show.genre).to eq(@genre)
+            expect(@show.genre).to_not eq(@genre_two)
+        end
+
 
 
     end
