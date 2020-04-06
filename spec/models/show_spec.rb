@@ -57,7 +57,5 @@ RSpec.describe Show, type: :model do
         it "has_many reviews through viewings" do
             expect(@show.reviews).to include(@review)
         end
-
-
     end
 end

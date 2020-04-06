@@ -1,6 +1,9 @@
 class Show < ApplicationRecord
   belongs_to :composer
   belongs_to :genre
+  has_many :viewings
+  has_many :users, through: :viewings
+  has_many :reviews, through: :viewings
   validates_presence_of :title, :first_performance_year
 
 
