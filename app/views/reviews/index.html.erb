@@ -1,0 +1,10 @@
+<h1>Reviews</h1>
+<% if @show %>
+    <h2>For <%= @show.title %></h2>
+<% end %>
+
+<ul>
+    <% @reviews.each do |review| %>
+        <li><%= review.user.username %> says: <%= review.body %></li>
+    <% end %>
+</ul>
