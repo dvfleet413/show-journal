@@ -22,6 +22,7 @@ describe "Feature Test - Shows", type: :feature do
         fill_in("user[username]", :with => @user.username)
         fill_in("user[password]", :with => "Password1")
         click_button('Sign In')
+        visit user_shows_path(@user)
         expect(page).to have_link("Don Carlo")
         expect(page).to_not have_content("Falstaff")
     end

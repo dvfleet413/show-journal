@@ -1,0 +1,7 @@
+<h1>All Shows</h1>
+
+<ul>
+    <% @shows.each do |show| %>
+        <li><%= link_to show.title, show_path(show) %>
+    <% end %>
+</ul>
