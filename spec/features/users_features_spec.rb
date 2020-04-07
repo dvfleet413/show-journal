@@ -46,6 +46,7 @@ describe "Feature Test - Users", type: :feature do
         visit new_user_path
         user_signup
         expect(current_path).to eq('/users/1')
+        expect(page.get_rack_session_key('user_id')).to_not be_nil
     end
 
     it "user#show page has link to view all shows user has seen" do 
