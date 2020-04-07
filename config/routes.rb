@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  resources :shows
+  resources :shows do
+    resources :reviews, only: [:index, :show]
+  end
+
   resources :users do
-    resources :reviews, only: [:index, :show, :new, :create, :edit, :update]
+    resources :reviews, only: [:index, :show, :edit, :update]
     resources :shows, only: [:index, :show]
   end
   resources :composers

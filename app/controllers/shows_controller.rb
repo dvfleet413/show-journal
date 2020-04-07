@@ -7,4 +7,14 @@ class ShowsController < ApplicationController
             @shows = Show.all
         end
     end
+
+    def show
+        set_show
+    end
+
+
+    private
+        def set_show
+            @show = Show.find(params[:id])
+        end
 end
