@@ -8,22 +8,28 @@ describe "Feature Test - root", type: :feature do
 end
 
 describe "Feature Test - login", type: :feature do
-    it "can login as a user" do
-        visit login_path
-        create_user
-        user_login
-        expect(response).to have_http_status(200)
-    end
 
     it "redirects to users#show on successful login" do
         visit login_path
         create_user
         user_login
         expect(current_path).to eq('/users/1')
+        expect(page.get_rack_session_key('user_id')).to_not be_nil
+    end
+
+    it "redirects with flash login with incorrect password" do
+        visit login_path
+        create_user
+        fill_in("user[username]", :with => "StatlerAndWaldorf")
+        fill_in("user[password]", :with => "wrongpassword")
+        click_button('Sign In')
+        expect(current_path).to eq('/login')
+        expect(page.get_rack_session).to_not include("user_id")
     end
 
     it "redirects to login page with flash message on unsuccesful login" do
         visit login_path
+        # don't create user in order to fail login
         user_login
         expect(current_path).to eq('/login')
     end 

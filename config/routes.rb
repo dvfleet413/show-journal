@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   end
   resources :composers
   resources :genres
+
+  get '/login', to: 'users#get_login'
+  post '/login', to: 'users#post_login'
+
+  root 'static#home'
 end
