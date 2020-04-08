@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
         end
 
         def review_params
-            parmas.require(:review).permit(:body, :user_id, :show_id)
+            params.require(:review).permit(:body, :user_id, :show_id)
         end
 
 end

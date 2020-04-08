@@ -42,13 +42,25 @@ describe "Feature Test - Shows", type: :feature do
 end
 
 describe "Feature Test - Create New Viewing", type: :feature do
+    before(:each) do
+        @composer = Composer.create(name: "Giuseppe Verdi", birth_year: 1813, death_year: 1901, country: "Italy")
+        @genre = Genre.create(name: "Tragedy")
+        @show = Show.create(title: "Don Carlo", first_performance_year: 1876, composer_id: @composer.id, genre_id: @genre.id)
+        @show_two = Show.create(title: "Falstaff", first_performance_year: 1893, composer_id: @composer.id, genre_id: @genre.id)
+        @user = User.create(username: Faker::Internet.username, email: Faker::Internet.email, password: "Password1")
+        @viewing = Viewing.create(date: Date.today, location: Faker::Address.city, user_id: @user.id, show_id: @show.id)
+        @review = Review.create(body: "This show was awesome!", rating: 5, viewing_id: @viewing.id)
+    end
+
     it "user can click button on show#show page to see nested form to create new viewing and review" do
         visit login_path
         fill_in("user[username]", :with => @user.username)
         fill_in("user[password]", :with => "Password1")
         click_button('Sign In')
         visit show_path(@show)
-        expect(page).to have_button("I Saw This!")
+        expect(page).to have_link("I Saw This!")
+        click_link("I Saw This!")
+        expect(page).to have_content("Create a New Viewing")
     end
 
     it "submiting new viewing/review form creates a new viewing and review, with all approproate associations" do
@@ -57,7 +69,8 @@ describe "Feature Test - Create New Viewing", type: :feature do
         fill_in("user[password]", :with => "Password1")
         click_button('Sign In')
         visit show_path(@show)
-        click_button("I Saw This!")
+        click_link("I Saw This!")
+
         # fill in form and expect @user.shows to include @show, expect @show.reviews to include new review
         expect(true).to eq(false)
     end
@@ -81,6 +94,11 @@ describe "Feature Test - Create New Show", type: :feature do
         visit show_path(@show)
         click_button("Add New Show")
         #fill in form and expect Show.last to eq new show, Composer.last to equal new composer, and Genre.last to equal new genre
+        fill_in("viewing[date]", :with => "01/01/2020")
+        fill_in("viewing[location]", :with => "New York")
+        fill_in("review[body]", :with => "I loved it!")
+        fill_in("review[rating]", :with => "5")
+        click_button("Create Viewing")
         expect(true).to eq(false)
     end
 end
