@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :reviews, only: [:index, :show, :edit, :update]
-    resources :shows, only: [:index, :show]
+    resources :shows, only: [:index, :show, :new, :create]
   end
   resources :composers
   resources :genres

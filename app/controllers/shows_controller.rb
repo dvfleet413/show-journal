@@ -10,7 +10,6 @@ class ShowsController < ApplicationController
 
     def create 
         @show = Show.create!(shows_params)
-        binding.pry
         redirect_to shows_path
     end
     
