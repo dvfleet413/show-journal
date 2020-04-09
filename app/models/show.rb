@@ -6,7 +6,9 @@ class Show < ApplicationRecord
   has_many :reviews, through: :viewings
   validates_presence_of :title, :first_performance_year
 
-  scope :from_nineteenth_century, -> { where("first_performance_year >= ? AND first_performance_year < ?", 1800, 1900) }
+  scope :from_nineteenth_century, -> {where("first_performance_year >= ? AND first_performance_year < ?", 1800, 1900) }
+  scope :from_twentieth_century, -> {where("first_performance_year >= ? AND first_performance_year < ?", 1900, 2000)}
+  scope :from_twentyfirst_century, -> {where("first_performance_year >= ?", 2000)}
   scope :popular, -> { where("viewings_count >= ?", 0)}
 
 
