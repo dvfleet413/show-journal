@@ -1,5 +1,6 @@
 class ShowsController < ApplicationController
     def index
+        @genres = Genre.all
         if params[:user_id]
             @shows = current_user.shows
             render 'user_shows_index'

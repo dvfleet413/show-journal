@@ -1,18 +1,18 @@
 <h1><%= @show.title %></h1>
 
-<h3>Composer: <%= link_to @show.composer.name, composer_path(@show.composer) %></h3>
-<h3>Genre: <%= link_to @show.genre.name, genre_path(@show.genre) %>
-<h3>First Performance Year: <%= @show.first_performance_year %></h3>
+<h5>Composer: <%= link_to @show.composer.name, composer_path(@show.composer) %></h5>
+<h5>Genre: <%= link_to @show.genre.name, genre_path(@show.genre) %>
+<h5>First Performance Year: <%= @show.first_performance_year %></h5>
 
 <br />
-<% if current_user %>
-    <%= link_to "I Saw This!", new_show_viewing_path(@show) %>
+<% if logged_in? && !current_user.shows.include?(@show)%>
+    <h5><%= link_to "I Saw This!", new_show_viewing_path(@show) %></h5>
     <br />
 <% end %>
 
-<h3><%= link_to "Reviews", show_reviews_path(@show) %></h3>
+<h5>Reviews</h5>
 <ul>
     <% @show.reviews.each do |review| %>
-        <li><%= review.user.username %> says: <%= review.body %></li>
+        <li><em><%= review.user.username %> says</em>: <%= review.body %> - <strong><%= review.rating %>/5</strong></li>
     <% end %>
 </ul>

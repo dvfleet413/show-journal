@@ -1,7 +1,9 @@
 <h1>All Shows</h1>
-
-<ul>
-    <% @shows.each do |show| %>
-        <li><%= link_to show.title, show_path(show) %>
-    <% end %>
-</ul>
+<% @genres.each do |genre| %>
+    <h5><%= genre.name %></h5>
+        <ul>
+            <% @shows.select{|show| show.genre == genre}.each do |show| %>
+                <li><%= link_to show.title, show_path(show) %> - <%= show.composer.name %></li>
+            <% end %>
+        </ul>
+<% end %>
