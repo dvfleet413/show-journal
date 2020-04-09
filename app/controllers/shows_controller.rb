@@ -1,4 +1,13 @@
 class ShowsController < ApplicationController
+    def new
+        @show = Show.new
+        @genre = @show.build_genre
+        @composer = @show.build_composer
+    end
+
+    def create 
+    end
+    
     def index
         @genres = Genre.all
         if params[:user_id]
@@ -12,6 +21,7 @@ class ShowsController < ApplicationController
     def show
         set_show
     end
+
 
 
     private
