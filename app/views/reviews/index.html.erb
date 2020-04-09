@@ -5,6 +5,6 @@
 
 <ul>
     <% @reviews.each do |review| %>
-        <li><em><%= review.user.username %> says about <%= review.show.title %></em>: <%= review.body %></li>
+        <li><em><%= review.user.username %> says about <%= review.show.title %></em>: <%= review.body %> - <strong><%= review.rating %>/5</strong></li>
     <% end %>
 </ul>
