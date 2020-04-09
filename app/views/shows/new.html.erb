@@ -1,0 +1,44 @@
+<h1>Add New Show</h1>
+
+<%= form_for @show do |f|%>
+    <h5>Show</h5>
+    <%= f.label :title%>
+    <%= f.text_field :title, list: 'title' %>
+    <datalist id='title'>
+        <% @shows.each do |show| %>
+            <option value="<%= show.title %>"></option>
+        <% end %>
+    </datalist><br />
+    <%= f.label :first_performance_year %>
+    <%= f.number_field :first_performance_year %><br />
+
+    <h5>Composer</h5>
+    <%= f.fields_for :composer do |composer_form| %>
+        <%= composer_form.label :name %>
+        <%= composer_form.text_field :name, list: 'composer-name' %>
+        <datalist id='composer-name'>
+            <% @composers.each do |composer| %>
+                <option value="<%= composer.name%>"></option>
+            <% end %>
+        </datalist><br />
+        <%= composer_form.label :birth_year %>
+        <%= composer_form.number_field :birth_year %><br />
+        <%= composer_form.label :death_year %>
+        <%= composer_form.number_field :death_year %><br />
+        <%= composer_form.label :country %>
+        <%= composer_form.text_field :country %><br />
+    <% end %>
+
+    <h5>Genre</h5>
+    <%= f.fields_for :genre do |genre_form| %>
+        <%= genre_form.label :name %>
+        <%= genre_form.text_field :name, list: 'genre-name' %>
+        <datalist id='genre-name'>
+        <%= @genres.each do |genre| %>
+            <option value="<%= genre.name %>"></option>
+        <% end %>
+        </datalist><br />
+    <% end %>
+
+    <%= f.submit "Add New Show" %>
+<% end %>

@@ -1,11 +1,17 @@
 class ShowsController < ApplicationController
     def new
         @show = Show.new
+        @shows = Show.all
         @genre = @show.build_genre
+        @genres = Genre.all
         @composer = @show.build_composer
+        @composers = Composer.all
     end
 
     def create 
+        @show = Show.create!(shows_params)
+        binding.pry
+        redirect_to shows_path
     end
     
     def index
@@ -14,7 +20,7 @@ class ShowsController < ApplicationController
             @shows = current_user.shows
             render 'user_shows_index'
         else
-            @shows = Show.popular
+            @shows = Show.all
         end
     end
 
@@ -27,5 +33,11 @@ class ShowsController < ApplicationController
     private
         def set_show
             @show = Show.find(params[:id])
+        end
+
+        def shows_params
+            params.require(:show).permit(:title, :first_performance_year, 
+                                        composer_attributes: [:name, :birth_year, :death_year, :country],
+                                        genre_attributes: [:name])
         end
 end
