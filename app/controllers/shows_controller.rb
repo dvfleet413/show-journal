@@ -14,7 +14,7 @@ class ShowsController < ApplicationController
             @shows = current_user.shows
             render 'user_shows_index'
         else
-            @shows = Show.all
+            @shows = Show.popular
         end
     end
 

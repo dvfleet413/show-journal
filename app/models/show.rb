@@ -7,6 +7,7 @@ class Show < ApplicationRecord
   validates_presence_of :title, :first_performance_year
 
   scope :from_nineteenth_century, -> { where("first_performance_year >= ? AND first_performance_year < ?", 1800, 1900) }
+  scope :popular, -> { where("viewings_count >= ?", 0)}
 
 
 #  idea for class level scoped 

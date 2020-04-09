@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_05_040508) do
+ActiveRecord::Schema.define(version: 2020_04_09_040742) do
 
   create_table "composers", force: :cascade do |t|
     t.string "name"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_040508) do
     t.integer "first_performance_year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "viewings_count"
     t.index ["composer_id"], name: "index_shows_on_composer_id"
     t.index ["genre_id"], name: "index_shows_on_genre_id"
   end
