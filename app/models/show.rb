@@ -12,7 +12,7 @@ class Show < ApplicationRecord
   scope :from_nineteenth_century, -> {where("first_performance_year >= ? AND first_performance_year < ?", 1800, 1900) }
   scope :from_twentieth_century, -> {where("first_performance_year >= ? AND first_performance_year < ?", 1900, 2000)}
   scope :from_twentyfirst_century, -> {where("first_performance_year >= ?", 2000)}
-  scope :popular, -> {where("viewings_count >= ?", 0)}
+  scope :popular, -> {where("viewings_count >= ?", 5)}
 
   def composer_attributes=(composer)
     self.composer = Composer.find_or_create_by(name: composer[:name])

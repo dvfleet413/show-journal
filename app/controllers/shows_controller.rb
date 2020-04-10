@@ -14,13 +14,21 @@ class ShowsController < ApplicationController
     end
     
     def index
-        @genres = Genre.all
         if params[:user_id]
             @shows = current_user.shows
             render 'user_shows_index'
-        else
+        elsif params[:filter] == "popular"
+            @shows = Show.popular
+        elsif params[:filter] == "from-nineteenth-century"
+            @shows = Show.from_nineteenth_century
+        elsif params[:filter] == "from-twentieth-century"
+            @shows = Show.from_twentieth_century
+        elsif params[:filter] == "from-twentyfirst-century"
+            @shows = Show.from_twentyfirst_century
+        elsif params[:filter] == "all" || !params[:filter]
             @shows = Show.all
         end
+        @genres = @shows.collect {|show| show.genre}.uniq
     end
 
     def show

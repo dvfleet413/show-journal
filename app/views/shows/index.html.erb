@@ -1,9 +1,15 @@
 <h1>All Shows</h1>
-<p>Filter:
-    <%= form_tag '/shows', method: :get do %>
-        <%= select_tag 'filter' %>
-    <% end %>
 
+<% if !params[:user_id] %>
+    <%= form_tag '/shows', method: :get do %>
+        <%= select_tag 'filter', options_for_select({"All" => "all",
+                                                    "Popular" => "popular", 
+                                                    "From Nineteenth Century" => "from-nineteenth-century", 
+                                                    "From Twentienth Century" => "from-twentieth-century",
+                                                    "From Twentyfirst Century" => "from-twentyfirst-century",}, params[:filter]) %>
+        <%= submit_tag "Filter"%>
+    <% end %>
+<% end %>
 
 <% @genres.each do |genre| %>
     <h5><%= genre.name %></h5>
