@@ -12,7 +12,7 @@ class Show < ApplicationRecord
   scope :from_nineteenth_century, -> {where("first_performance_year >= ? AND first_performance_year < ?", 1800, 1900) }
   scope :from_twentieth_century, -> {where("first_performance_year >= ? AND first_performance_year < ?", 1900, 2000)}
   scope :from_twentyfirst_century, -> {where("first_performance_year >= ?", 2000)}
-  scope :popular, -> { where("viewings_count >= ?", 0)}
+  scope :popular, -> {where("viewings_count >= ?", 0)}
 
   def composer_attributes=(composer)
     self.composer = Composer.find_or_create_by(name: composer[:name])
@@ -24,15 +24,11 @@ class Show < ApplicationRecord
     self.genre.update(genre)
   end
 
-#  idea for class level scoped 
-#    def self.from_nineteenth_century
-#      where("first_performance_year >= ? AND first_performance_year < ?", 1800, 1900)
-#    end
-#
-#  I think it can also be written like this...
-#
-#    scope :from_ninteenth_century, -> { where("first_performance_year >= ? AND first_performance_year < ?", 1800, 1900) }
-#
-#  Show.from_nineteenth_century should return all shows first performed between 1800 and 1900
-#  Can do the same with 20th and 21st centrury
+  def composer_name
+    self.composer.name
+  end
+
+  def genre_name
+    self.genre.name
+  end
 end

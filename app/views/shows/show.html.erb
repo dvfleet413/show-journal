@@ -1,7 +1,7 @@
 <h1><%= @show.title %></h1>
 
-<h5>Composer: <%= link_to @show.composer.name, composer_path(@show.composer) %></h5>
-<h5>Genre: <%= link_to @show.genre.name, genre_path(@show.genre) %>
+<h5>Composer: <%= link_to @show.composer_name, composer_path(@show.composer) %></h5>
+<h5>Genre: <%= link_to @show.genre_name, genre_path(@show.genre) %>
 <h5>First Performance Year: <%= @show.first_performance_year %></h5>
 
 <br />
@@ -13,6 +13,6 @@
 <h5>Reviews</h5>
 <ul>
     <% @show.reviews.each do |review| %>
-        <li><em><%= review.user.username %> says</em>: <%= review.body %> - <strong><%= review.rating %>/5</strong></li>
+        <li><em><%= review.user_name %> says</em>: <%= review.body %> - <strong><%= review.rating %>/5</strong></li>
     <% end %>
 </ul>

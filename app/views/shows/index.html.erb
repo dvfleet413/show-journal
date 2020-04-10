@@ -1,9 +1,20 @@
 <h1>All Shows</h1>
+<p>Filter:
+    <%= form_tag '/shows', method: :get do %>
+        <%= select_tag 'filter' %>
+    <% end %>
+
+
 <% @genres.each do |genre| %>
     <h5><%= genre.name %></h5>
         <ul>
             <% @shows.select{|show| show.genre == genre}.each do |show| %>
-                <li><%= link_to show.title, show_path(show) %> - <%= show.composer.name %></li>
+                <li><%= link_to show.title, show_path(show) %> - <%= show.composer_name %></li>
             <% end %>
         </ul>
+<% end %>
+
+<% if logged_in? %>
+    <br />
+    <p>Don't see the show you're looking for? <%= link_to "Add It!", new_show_path %></p>
 <% end %>
