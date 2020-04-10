@@ -4,22 +4,24 @@ class SessionsController < ApplicationController
     end
 
     def create
-        binding.pry
-        if auth['uid']
+        if !!auth
             @user = User.find_or_create_by(uid: auth['uid']) do |u|
-                u.name = auth['info']['name']
+                u.username = auth['info']['name']
                 u.email = auth['info']['email']
                 u.image = auth['info']['image']
+                u.password = SecureRandom.hex(10)
               end
+              session[:user_id] = @user.id
+              redirect_to user_path(@user)
         else
             @user = User.find_by(username: params[:user][:username])
-        end
-        if @user && @user.authenticate(params[:user][:password])
-            session[:user_id] = @user.id
-            redirect_to user_path(@user)
-        else
-            flash[:notice] = "Incorrect username or password, try again."
-            render :new
+            if @user && @user.authenticate(params[:user][:password])
+                session[:user_id] = @user.id
+                redirect_to user_path(@user)
+            else
+                flash[:notice] = "Incorrect username or password, try again."
+                render :new
+            end
         end
     end
 
