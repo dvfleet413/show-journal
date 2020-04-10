@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
                 session[:user_id] = @user.id
                 redirect_to user_path(@user)
             else
-                flash[:notice] = "Incorrect username or password, try again."
+                flash[:alert_danger] = "Incorrect username or password, try again."
                 render :new
             end
         end
@@ -34,5 +34,4 @@ class SessionsController < ApplicationController
         def auth
             request.env['omniauth.auth']
         end
-
 end

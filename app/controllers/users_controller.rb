@@ -9,7 +9,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
-            flash[:notice] = "Unabe to create your account. Please try again."
+            flash[:alert_danger] = "Unabe to create your account. Please try again."
             redirect_to new_user_path
         end
     end
