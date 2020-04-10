@@ -9,8 +9,16 @@ class ShowsController < ApplicationController
     end
 
     def create 
-        @show = Show.create!(shows_params)
-        redirect_to shows_path
+        @show = Show.new(shows_params)
+        if @show.valid?
+            @show.save
+            redirect_to shows_path
+        else
+            @shows = Show.all
+            @composers = Composer.all
+            @genres = Genre.all
+            render :new
+        end
     end
     
     def index

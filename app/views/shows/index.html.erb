@@ -3,7 +3,7 @@
 <% if !params[:user_id] %>
     <%= form_tag '/shows', method: :get do %>
         <%= select_tag 'filter', options_for_select({"All" => "all",
-                                                    "Popular" => "popular", 
+                                                    "Popular (5+ saved viewings)" => "popular", 
                                                     "From Nineteenth Century" => "from-nineteenth-century", 
                                                     "From Twentienth Century" => "from-twentieth-century",
                                                     "From Twentyfirst Century" => "from-twentyfirst-century",}, params[:filter]) %>
