@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   resources :genres
   
 
-  get '/login', to: 'users#get_login'
-  post '/login', to: 'users#post_login'
-  post '/logout', to: 'users#logout'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  post '/logout', to: 'sessions#destroy'
 
   get '/about', to: 'static#about'
 
