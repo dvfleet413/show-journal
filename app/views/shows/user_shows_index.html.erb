@@ -1,7 +1,11 @@
-<h1>Your Shows</h1>
+<h1>Your Journal</h1>
 
 <ul>
     <% @shows.each do |show| %>
-        <li><%= link_to show.title, user_show_path(current_user, show) %></li>
+        <li><%= link_to show.title, user_show_path(current_user, show) %>: <br />
+            <% current_user_viewings(show).each do |viewing|%>
+                Viewed on <%= viewing.date %>
+            <% end %>
+        </li>
     <% end %>
 </ul>

@@ -8,4 +8,7 @@ module ShowsHelper
         show.genre.name
     end
 
+    def current_user_viewings(show)
+        show.viewings.select{|viewing| viewing.user == current_user}
+    end
 end
