@@ -1,6 +1,7 @@
 class ViewingsController < ApplicationController
 
     def new  
+        redirect_if_not_authorized
         @show = Show.find(params[:show_id])
         @viewing = Viewing.new
         @review = @viewing.build_review

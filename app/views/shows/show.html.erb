@@ -5,10 +5,9 @@
 <h5>First Performance Year: <%= @show.first_performance_year %></h5>
 
 <br />
-<% if logged_in? && !current_user.shows.include?(@show)%>
-    <h5><%= link_to "I Saw This!", new_show_viewing_path(@show) %></h5>
-    <br />
-<% end %>
+
+<h5><%= link_to "I Saw This!", new_show_viewing_path(@show) %></h5>
+<br />
 
 <h5>Reviews</h5>
 <ul>
