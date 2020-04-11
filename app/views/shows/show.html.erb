@@ -1,7 +1,7 @@
 <h1><%= @show.title %></h1>
 
-<h5>Composer: <%= link_to @show.composer_name, composer_path(@show.composer) %></h5>
-<h5>Genre: <%= link_to @show.genre_name, genre_path(@show.genre) %>
+<h5>Composer: <%= link_to composer_name(@show), composer_path(@show.composer) %></h5>
+<h5>Genre: <%= link_to genre_name(@show), genre_path(@show.genre) %>
 <h5>First Performance Year: <%= @show.first_performance_year %></h5>
 
 <br />

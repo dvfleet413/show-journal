@@ -23,12 +23,4 @@ class Show < ApplicationRecord
     self.genre = Genre.find_or_create_by(name: genre[:name])
     self.genre.update(genre)
   end
-
-  def composer_name
-    self.composer.name
-  end
-
-  def genre_name
-    self.genre.name
-  end
 end

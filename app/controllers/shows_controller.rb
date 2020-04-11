@@ -32,7 +32,7 @@ class ShowsController < ApplicationController
         else
             @shows = select_shows
         end
-        @genres = @shows.collect {|show| show.genre_name}.uniq
+        @genres = @shows.collect {|show| show.genre.name}.uniq
     end
 
     def show
