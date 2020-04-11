@@ -1,4 +1,8 @@
 class ShowsController < ApplicationController
+
+# overuse of .all to render Shows#new -> use .pluck to pull only the necessary 
+# information from db to render datalists in view
+
     def new
         @show = Show.new
         @shows = Show.all
@@ -25,16 +29,8 @@ class ShowsController < ApplicationController
         if params[:user_id]
             @shows = current_user.shows
             render 'user_shows_index'
-        elsif params[:filter] == "popular"
-            @shows = Show.popular
-        elsif params[:filter] == "from-nineteenth-century"
-            @shows = Show.from_nineteenth_century
-        elsif params[:filter] == "from-twentieth-century"
-            @shows = Show.from_twentieth_century
-        elsif params[:filter] == "from-twentyfirst-century"
-            @shows = Show.from_twentyfirst_century
-        elsif params[:filter] == "all" || !params[:filter]
-            @shows = Show.all
+        else
+            @shows = select_shows
         end
         @genres = @shows.collect {|show| show.genre}.uniq
     end
@@ -42,8 +38,6 @@ class ShowsController < ApplicationController
     def show
         set_show
     end
-
-
 
     private
         def set_show
@@ -54,5 +48,22 @@ class ShowsController < ApplicationController
             params.require(:show).permit(:title, :first_performance_year, 
                                         composer_attributes: [:name, :birth_year, :death_year, :country],
                                         genre_attributes: [:name])
+        end
+
+        def select_shows
+            case params[:filter]
+            when "popular"
+                Show.popular
+            when "from-nineteenth-century"
+                Show.from_nineteenth_century
+            when "from-twentieth-century"
+                Show.from_twentieth_century
+            when "from-twentyfirst-century"
+                Show.from_twentyfirst_century
+            when "all"
+                Show.all
+            else 
+                Show.all
+            end
         end
 end

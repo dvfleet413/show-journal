@@ -4,25 +4,7 @@ class SessionsController < ApplicationController
     end
 
     def create
-        if !!auth
-            @user = User.find_or_create_by(uid: auth['uid']) do |u|
-                u.username = auth['info']['name']
-                u.email = auth['info']['email']
-                u.image = auth['info']['image']
-                u.password = SecureRandom.hex(10)
-              end
-              session[:user_id] = @user.id
-              redirect_to user_path(@user)
-        else
-            @user = User.find_by(username: params[:user][:username])
-            if @user && @user.authenticate(params[:user][:password])
-                session[:user_id] = @user.id
-                redirect_to user_path(@user)
-            else
-                flash[:alert_danger] = "Incorrect username or password, try again."
-                render :new
-            end
-        end
+        !!auth ? omniauth_login : normal_login
     end
 
     def destroy 
@@ -33,5 +15,25 @@ class SessionsController < ApplicationController
     private
         def auth
             request.env['omniauth.auth']
+        end
+
+        def omniauth_login
+            @user = User.find_or_create_by(uid: auth['uid']) do |u|
+                u.username = auth['info']['name']
+                u.email = auth['info']['email']
+                u.image = auth['info']['image']
+                u.password = SecureRandom.hex(10)
+              end
+              login
+        end
+
+        def normal_login
+            @user = User.find_by(username: params[:user][:username])
+            if @user && @user.authenticate(params[:user][:password])
+                login
+            else
+                flash[:alert_danger] = "Incorrect username or password, try again."
+                render :new
+            end
         end
 end
