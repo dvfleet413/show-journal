@@ -23,7 +23,6 @@ class SessionsController < ApplicationController
                 u.image = auth['info']['image']
                 u.password = SecureRandom.hex(10)
               end
-              binding.pry
               login
         end
 

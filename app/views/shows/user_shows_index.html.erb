@@ -4,7 +4,7 @@
     <% @shows.each do |show| %>
         <li><%= link_to show.title, user_show_path(current_user, show) %>: <br />
             <% current_user_viewings(show).each do |viewing|%>
-                Viewed on <%= viewing.date %>
+                <%= viewing_date(viewing) %>
             <% end %>
         </li>
     <% end %>
