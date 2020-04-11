@@ -18,12 +18,12 @@ class SessionsController < ApplicationController
         end
 
         def omniauth_login
-            @user = User.find_or_create_by(uid: auth['uid']) do |u|
+            @user = User.find_or_create_by(email: auth[:info][:email]) do |u|
                 u.username = auth['info']['name']
-                u.email = auth['info']['email']
                 u.image = auth['info']['image']
                 u.password = SecureRandom.hex(10)
               end
+              binding.pry
               login
         end
 
