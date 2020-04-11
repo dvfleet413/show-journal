@@ -1,9 +1,27 @@
 <h1>Welcome to the Show Journal!</h1>
-<%= link_to "See All Shows", shows_path %><br />
 
-<% if logged_in? %>
-    <%= link_to "My Account", user_path(current_user) %>
-<% else %>
-    <%= link_to "Log In", login_path %><br />
-    <%= link_to "Create Account", new_user_path %><br />
-<% end %>
+<%= render 'carousel'%>
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-sm'>
+            <%= link_to "See All Shows", shows_path %><br />
+        </div>
+        <% if logged_in? %>
+            <div class='col-sm'>
+                <%= link_to "My Account", user_path(current_user) %>
+            </div>
+        <% else %>
+            <div class='col-sm'>
+                <%= link_to "Log In", login_path %><br />
+            </div>
+            <div class='col-sm'>
+                <%= link_to "Create Account", new_user_path %><br />
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<p>Welcome to the Show Journal. We hope you enjoy using this app to keep track of your favorite plays, 
+musicals, operas, and other performances. Feel free to <%= link_to "add new shows", new_show_path %> you've seen, or 
+<%= link_to "add existing shows to your journal", shows_path %>. </p>

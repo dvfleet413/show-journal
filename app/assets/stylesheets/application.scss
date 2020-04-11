@@ -25,3 +25,24 @@
  #error_explanation {
      color: darkred;
  }
+
+ * {
+   font-family: 'Libre Baskerville', serif;
+ }
+
+
+.carousel-inner {
+   max-height: 500px;
+   overflow: hidden;
+}
+
+ .carousel-item img {
+   width: auto;
+   height: 100%;
+ }
+
+ .col-sm {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+ }
