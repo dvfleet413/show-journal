@@ -1,11 +1,11 @@
 <h1>Your Journal</h1>
 
-<ul>
-    <% @shows.each do |show| %>
-        <li><%= link_to show.title, user_show_path(current_user, show) %>: <br />
-            <% current_user_viewings(show).each do |viewing|%>
-                <%= viewing_date(viewing) %>
-            <% end %>
-        </li>
-    <% end %>
-</ul>
+
+<% @shows.each do |show| %>
+    <h5><%= link_to show.title, user_show_path(current_user, show) %>: </h5>
+        <% current_user_viewings(show).each do |viewing|%>
+            <p><%= viewing_date(viewing) %> - <%= viewing_location(viewing) %></p>
+            <p><%= viewing.review.body %> - <%= viewing.review.rating %>/5</p>
+        <% end %>
+    <hr>
+<% end %>

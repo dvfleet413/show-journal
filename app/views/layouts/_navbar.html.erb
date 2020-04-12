@@ -12,7 +12,8 @@
 
         <% if logged_in? %>
             <ul class="navbar-nav ml-auto">
-                <li><%= link_to "My Account", user_path(current_user), class: "nav-item nav-link" %></li>
+                <li><%= link_to "Journal", user_shows_path(current_user), class: "nav-item nav-link" %></li>
+                <li><%= link_to "Account", user_path(current_user), class: "nav-item nav-link" %></li>
                 <li><%= link_to "Logout", logout_path, method: :post, class: "nav-item nav-link" %></li>
             </ul>
         <% else %>
