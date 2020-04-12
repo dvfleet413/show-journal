@@ -10,6 +10,8 @@
           <li><%= link_to "All Shows", shows_path, class: "nav-item nav-link" %></li>
         </ul>
 
+        <hr>
+
         <% if logged_in? %>
             <ul class="navbar-nav ml-auto">
                 <li><%= link_to "Journal", user_shows_path(current_user), class: "nav-item nav-link" %></li>
