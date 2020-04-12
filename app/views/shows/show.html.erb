@@ -9,6 +9,8 @@
 <h5><%= link_to "I Saw This!", new_show_viewing_path(@show), class: "btn btn-primary" %></h5>
 <br />
 
+<h5><%= link_to "Edit This Show", edit_show_path(@show), class: "btn btn-dark" %></h5>
+
 <h5>Reviews</h5>
 <ul>
     <% @show.reviews.each do |review| %>

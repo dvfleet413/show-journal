@@ -6,11 +6,9 @@ class ShowsController < ApplicationController
     def new
         redirect_if_not_authorized
         @show = Show.new
-        @shows = Show.all
         @genre = @show.build_genre
-        @genres = Genre.all
         @composer = @show.build_composer
-        @composers = Composer.all
+        set_data_for_datalists
     end
 
     def create 
@@ -20,9 +18,7 @@ class ShowsController < ApplicationController
             @show.save
             redirect_to shows_path
         else
-            @shows = Show.all
-            @composers = Composer.all
-            @genres = Genre.all
+            set_data_for_datalists
             render :new
         end
     end
@@ -39,6 +35,24 @@ class ShowsController < ApplicationController
 
     def show
         set_show
+    end
+
+    def edit
+        redirect_if_not_authorized
+        set_show
+        set_data_for_datalists
+    end
+
+    def update
+        redirect_if_not_authorized
+        set_show
+        if @show.update(shows_params)
+            binding.pry
+            redirect_to show_path(@show)
+        else
+            set_data_for_datalists
+            render :edit
+        end
     end
 
     private
@@ -67,5 +81,11 @@ class ShowsController < ApplicationController
             else 
                 Show.all
             end
+        end
+
+        def set_data_for_datalists
+            @shows = Show.all
+            @composers = Composer.all
+            @genres = Genre.all
         end
 end

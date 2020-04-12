@@ -38,9 +38,9 @@ DATA = {
 
 def main
   make_genres
-   make_composers
-   make_shows
- end
+  make_composers
+  make_shows
+end
 
 def make_genres
   DATA[:genres].each do |genre|
