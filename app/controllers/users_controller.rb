@@ -8,8 +8,7 @@ class UsersController < ApplicationController
         if @user.save
             login
         else
-            flash[:alert_danger] = "Unable to create your account. Please try again."
-            redirect_to new_user_path
+            render :new
         end
     end
 
@@ -18,6 +17,6 @@ class UsersController < ApplicationController
 
     private
         def user_params
-            params.require(:user).permit(:username, :email, :password)
+            params.require(:user).permit(:username, :email, :password, :password_confirmation)
         end
 end
