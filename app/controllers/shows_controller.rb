@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
 
-# overuse of .all to render Shows#new -> use .pluck to pull only the necessary 
+# overuse of .all in #set_data_for_datalists -> use .pluck to pull only the necessary 
 # information from db to render datalists in view
 
     def new
@@ -54,6 +54,20 @@ class ShowsController < ApplicationController
             render :edit
         end
     end
+
+    def destroy
+        redirect_if_not_authorized
+        set_show
+        if @show.viewings_count == 0 || !@show.viewings_count
+            @show.destroy
+            flash[:alert_warning] = "#{@show.title} successfully deleted"
+            redirect_to shows_path
+        else
+            flash[:alert_warning] = "Shows with viewings can't be deleted this way"
+            redirect_to show_path(@show)
+        end
+    end
+
 
     private
         def set_show
