@@ -8,6 +8,7 @@ class ViewingsController < ApplicationController
     end
 
     def create
+        redirect_if_not_authorized
         @viewing = Viewing.create!(viewings_params)
         redirect_to user_path(current_user)
     end

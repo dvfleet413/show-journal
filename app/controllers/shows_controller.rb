@@ -4,6 +4,7 @@ class ShowsController < ApplicationController
 # information from db to render datalists in view
 
     def new
+        redirect_if_not_authorized
         @show = Show.new
         @shows = Show.all
         @genre = @show.build_genre
@@ -13,6 +14,7 @@ class ShowsController < ApplicationController
     end
 
     def create 
+        redirect_if_not_authorized
         @show = Show.new(shows_params)
         if @show.valid?
             @show.save
