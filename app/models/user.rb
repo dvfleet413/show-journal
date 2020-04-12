@@ -7,7 +7,9 @@ class User < ApplicationRecord
     has_many :reviews, through: :viewings
 
 
-    def composers 
-        shows.map {|show| show.composer }
+    def sorted_shows
+        self.shows.sort_by do |show| 
+            show.viewings.select{|viewing| viewing.user == self}[0].date
+        end
     end
 end

@@ -27,7 +27,7 @@ class ShowsController < ApplicationController
     
     def index
         if params[:user_id]
-            @shows = current_user.shows
+            @shows = current_user.sorted_shows
             render 'user_shows_index'
         else
             @shows = select_shows
