@@ -10,16 +10,20 @@ DATA = {
   :composer_keys =>
     ["name", "birth_year", "death_year", "country"],
   :composers => [
-    #1
     ["Giuseppe Verdi", 1813, 1901, "Italy"],
-    #2
     ["Giacomo Puccini", 1858, 1924, "Italy"],
-    #3
     ["Richard Wagner", 1813, 1883, "Germany"],
-    #4
     ["Gioachino Rossini", 1792, 1868, "Italy"],
-    #5
-    ["Georges Bizet", 1838, 1875, "France"]
+    ["Georges Bizet", 1838, 1875, "France"],
+    ["Claude-Michel Schonberg", 1944, nil, "France"],
+    ["Mel Brooks", 1926, nil, "United States"],
+    ["Richard Sherman", 1928, nil, "United States"],
+    ["Alan Menken", 1949, nil, "United States"],
+    ["Lin-Manuel Miranda", 1980, nil, "United States"],
+    ["Andrew Lloyd Weber", 1948, nil, "England"],
+    ["Bob Gaudio", 1942, nil, "United States"],
+    ["Stephen Schwartz", 1948, nil, "United States"],
+    ["Elton John", 1947, nil, "England"]
   ],
   :genre_keys =>
     ["name"],
@@ -27,7 +31,12 @@ DATA = {
     ["Opera - Tragedy"],
     ["Opera - Comedy"],
     ["Opera"],
-    ["Opera - Opera Comique"]
+    ["Opera - Opera Comique"],
+    ["Musical - Drama"],
+    ["Musical - Comedy"],
+    ["Musical - Hip Hop"],
+    ["Musical"],
+    ["Musical - Jukebox Musical"]
   ],
   :show_keys =>
    ["title", "first_performance_year", "composer_id", "genre_id"],
@@ -44,7 +53,19 @@ DATA = {
     ["La traviata", 1853, 1, 3],
     ["La Bohème", 1896, 2, 3],
     ["Rigoletto", 1851, 1, 3],
-    ["Tosca", 1900, 2, 3]
+    ["Tosca", 1900, 2, 3],
+    ["Miss Saigon", 1991, 6, 5],
+    ["The Producers", 2001, 7, 6],
+    ["Mary Poppins", 2006, 8, 6],
+    ["Alladin", 2014, 9, 6],
+    ["Hamilton", 2015, 10, 7],
+    ["Cats", 1981, 11, 8],
+    ["Les Miserables", 1980, 6, 5],
+    ["Beauty and the Beast", 1994, 9, 8],
+    ["Jersey Boys", 2005, 12, 9],
+    ["The Phantom of the Opera", 1986, 11, 8],
+    ["Wicked", 2003, 13, 8],
+    ["The Lion King", 1997, 14, 8]
   ]
 }
 
