@@ -26,6 +26,6 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback', to: 'sessions#create'
 
   get '/about', to: 'static#about'
-
+  get '/privacy', to: 'static#privacy'
   root 'static#home'
 end
