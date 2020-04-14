@@ -5,6 +5,7 @@ class Show < ApplicationRecord
   has_many :users, through: :viewings
   has_many :reviews, through: :viewings
   validates_presence_of :title, :first_performance_year
+  validates_uniqueness_of :title
 
   accepts_nested_attributes_for :composer
   accepts_nested_attributes_for :genre

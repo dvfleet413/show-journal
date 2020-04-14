@@ -2,22 +2,59 @@
 
 Specs:
 - [x] Using Ruby on Rails for the project
-- [ ] Include at least one has_many relationship (x has_many y; e.g. User has_many Recipes) 
-- [ ] Include at least one belongs_to relationship (x belongs_to y; e.g. Post belongs_to User)
-- [ ] Include at least two has_many through relationships (x has_many y through z; e.g. Recipe has_many Items through Ingredients)
-- [ ] Include at least one many-to-many relationship (x has_many y through z, y has_many x through z; e.g. Recipe has_many Items through Ingredients, Item has_many Recipes through Ingredients)
-- [ ] The "through" part of the has_many through includes at least one user submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user (attribute_name e.g. ingredients.quantity)
-- [ ] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
-- [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-- [ ] Include signup (how e.g. Devise)
-- [ ] Include login (how e.g. Devise)
-- [ ] Include logout (how e.g. Devise)
-- [ ] Include third party signup/login (how e.g. Devise/OmniAuth)
-- [ ] Include nested resource show or index (URL e.g. users/2/recipes)
-- [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
-- [ ] Include form display of validation errors (form URL e.g. /recipes/new)
+- [x] Include at least one has_many relationship (x has_many y; e.g. User has_many Recipes)  
+    - Show has_many Viewings
+    - User has_many Viewings
+- [x] Include at least one belongs_to relationship (x belongs_to y; e.g. Post belongs_to User)  
+    - Show belongs_to Composer
+    - Show belongs_to Genre
+    - Review belongs_to Viewing
+    - Viewing belongs_to User
+    - Vieiwng belongs_to Show 
+- [x] Include at least two has_many through relationships (x has_many y through z; e.g. Recipe has_many Items through Ingredients)  
+    - User has_many Shows through Viewings
+    - Show has_many Users through Viewings
+    - User has_many Reviews through Viewings
+    - Show has_many Reviews through Viewings
+    - Composer has_many Genres through Viewings
+    - Genre has_many Composers through Viewings
+- [x] Include at least one many-to-many relationship (x has_many y through z, y has_many x through z; e.g. Recipe has_many Items through Ingredients, Item has_many Recipes through Ingredients)  
+    - Users to Shows
+    - Composers to Genres
+- [x] The "through" part of the has_many through includes at least one user submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user (attribute_name e.g. ingredients.quantity)
+    - User can create Viewing with date and location
+    - User can create Show with title and first performance year.
+- [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
+    - All models have some validations
+    - User - presence and uniqueness of username and email
+    - Viewing - presence of date and location
+    - Review - presence of body and rating; rating is number between 1 and 5
+    - Composer - presence of name, birth year, and country; uniqueness of name
+    - Show - presence of title and first performance year; uniqueness of title
+    - Genre - presence and uniqueness of name
+- [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+    - Show.popular #=> all shows that have more than 5 associated viewings ('/shows/popular')
+    - Show.from_nineteenth_century #=> all shows with first performany in 19th century ('/shows/from_nineteenth_century')
+    - Show.from_twentieth_century #=> all shows with first performance in 20th century ('/shows/from_twentieth_century')
+    - Show.from_twentyfirst_century #=> all shows with first performance in 21st century ('/shows/from_twentyfirst_century')
+- [x] Include signup (how e.g. Devise)
+    - '/users/new'
+- [x] Include login (how e.g. Devise)
+    - '/login'
+- [x] Include logout (how e.g. Devise)
+    - Sessions#destroy
+- [x] Include third party signup/login (how e.g. Devise/OmniAuth)
+    - omniauth-facebook
+- [x] Include nested resource show or index (URL e.g. users/2/recipes)
+    - Viewings nested in Shows ('/shows/:id/viewings/new' to record a new viewing and review)
+    - Shows nested in Users ('/users/:id/shows' is user's journal)
+- [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
+    - Viewings nested in Shows ('/shows/:id/viewings/new' to record a new viewing and review)
+- [x] Include form display of validation errors (form URL e.g. /recipes/new)
+    - partial 'shared/errors' is rendered before most forms to display errors, if any
+    - when user is redirected because authentication is required, flash message is deisplayed in application layout, just below navbar
 
 Confirm:
-- [ ] The application is pretty DRY
-- [ ] Limited logic in controllers
-- [ ] Views use helper methods if appropriate
+- [x] The application is pretty DRY
+- [x] Limited logic in controllers
+- [x] Views use helper methods if appropriate
