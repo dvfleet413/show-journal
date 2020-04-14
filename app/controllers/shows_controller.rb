@@ -63,7 +63,7 @@ class ShowsController < ApplicationController
             flash[:alert_warning] = "#{@show.title} successfully deleted"
             redirect_to shows_path
         else
-            flash[:alert_warning] = "Shows with viewings can't be deleted this way"
+            flash[:alert_warning] = "Somebody has this show in their journal! Shows with viewings can't be deleted this way."
             redirect_to show_path(@show)
         end
     end

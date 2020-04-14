@@ -1,0 +1,24 @@
+<%= form_for [@show, @viewing] do |f| %>
+    <h3>Show: </h3>
+    <p>Title: <%= @show.title %></p>
+    <p>Composer: <%= @show.composer.name %></p>
+
+    <h3>When/where did you watch the show?</h3>
+    <%= f.label :date %>
+    <%= f.date_field :date %><br />
+    <%= f.label :location %>
+    <%= f.text_field :location %><br />
+    <%= f.hidden_field :show_id, value: @show.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <h3>What did you think?</h3>
+    <%= f.fields_for :review do |review_form| %>
+        <%= review_form.label :review %>
+        <%= review_form.text_area :body %><br />
+        <%= review_form.label :rating %>
+        <%= review_form.number_field :rating, {min: 1, max: 5} %><br />
+    <% end %>
+
+    <%= f.submit %>
+
+<% end %>
