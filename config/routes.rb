@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       get :popular, to: 'shows#index', defaults: {filter: 'popular'}
     end
     resources :reviews, only: [:index, :show]
-    resources :viewings, only: [:new, :create]
+    resources :viewings, only: [:new, :create, :edit, :update, :destroy]
   end
 
   resources :users do

@@ -5,6 +5,11 @@
         <% current_user_viewings(show).each do |viewing|%>
             <p><%= viewing_date(viewing) %> - <%= viewing_location(viewing) %></p>
             <p><%= viewing.review.body %> - <%= viewing.review.rating %>/5</p>
+            <div class='row'>
+                <div class='col-sm'>
+                    <%= link_to "Edit Notes", edit_show_viewing_path(show, viewing) %>
+                </div>
+            </div>
         <% end %>
     <hr>
 <% end %>
