@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_04_10_182808) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "composers", force: :cascade do |t|
     t.string "name"
     t.integer "birth_year"
@@ -28,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_04_10_182808) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "viewing_id", null: false
+    t.bigint "viewing_id", null: false
     t.string "body"
     t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
@@ -37,8 +40,8 @@ ActiveRecord::Schema.define(version: 2020_04_10_182808) do
   end
 
   create_table "shows", force: :cascade do |t|
-    t.integer "composer_id", null: false
-    t.integer "genre_id", null: false
+    t.bigint "composer_id", null: false
+    t.bigint "genre_id", null: false
     t.string "title"
     t.integer "first_performance_year"
     t.datetime "created_at", precision: 6, null: false
@@ -59,8 +62,8 @@ ActiveRecord::Schema.define(version: 2020_04_10_182808) do
   end
 
   create_table "viewings", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "show_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "show_id", null: false
     t.datetime "date"
     t.string "location"
     t.datetime "created_at", precision: 6, null: false

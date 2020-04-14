@@ -10,17 +10,24 @@ DATA = {
   :composer_keys =>
     ["name", "birth_year", "death_year", "country"],
   :composers => [
+    #1
     ["Giuseppe Verdi", 1813, 1901, "Italy"],
+    #2
     ["Giacomo Puccini", 1858, 1924, "Italy"],
+    #3
     ["Richard Wagner", 1813, 1883, "Germany"],
-    ["Gioachino Rossini", 1792, 1868, "Italy"]
+    #4
+    ["Gioachino Rossini", 1792, 1868, "Italy"],
+    #5
+    ["Georges Bizet", 1838, 1875, "France"]
   ],
   :genre_keys =>
     ["name"],
   :genres => [
     ["Opera - Tragedy"],
     ["Opera - Comedy"],
-    ["Opera"]
+    ["Opera"],
+    ["Opera - Opera Comique"]
   ],
   :show_keys =>
    ["title", "first_performance_year", "composer_id", "genre_id"],
@@ -32,7 +39,12 @@ DATA = {
     ["Tristan und Isolde", 1865, 3, 1],
     ["Parsifal", 1882, 3, 3],
     ["Il barbiere di Siviglia", 1816, 4, 2],
-    ["Otello", 1816, 4, 3]
+    ["Otello", 1816, 4, 3],
+    ["Carmen", 1875, 5, 4],
+    ["La traviata", 1853, 1, 3],
+    ["La Bohème", 1896, 2, 3],
+    ["Rigoletto", 1851, 1, 3],
+    ["Tosca", 1900, 2, 3]
   ]
 }
 
