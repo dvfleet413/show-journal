@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+
   resources :shows do
+    collection do
+      get :from_nineteenth_century, to: 'shows#index', defaults: {filter: 'from-nineteenth-century'}
+      get :from_twentieth_century, to: 'shows#index', defaults: {filter: 'from-twentieth-century'}
+      get :from_twentyfirst_century, to: 'shows#index', defaults: {filter: 'from-twentyfirst-century'}
+      get :popular, to: 'shows#index', defaults: {filter: 'popular'}
+    end
     resources :reviews, only: [:index, :show]
     resources :viewings, only: [:new, :create]
   end
