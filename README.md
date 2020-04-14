@@ -11,3 +11,5 @@ Fork and clone this repository. Run `bundle install` in the project directory.  
 Bug reports and Pull Requests are welcomed on GitHub at [github.com/dvfleet413/show-journal](github.com/dvfleet413/show-journal).  
 
 ## License
+
+Show Journal is licensed under the MIT license.  The license can be found at [https://github.com/dvfleet413/show-journal/blob/master/LICENSE](https://github.com/dvfleet413/show-journal/blob/master/LICENSE)
