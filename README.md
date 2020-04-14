@@ -1,4 +1,4 @@
-# Inventory Manager
+# Show Journal
 
 Show Journal is a Rails app designed to help keep track of performances we've watched.  After watching any show (primarily designed for operas, musicals, plays, etc) a user can mark it as viewed and add notes and a rating to their personal journal.  The viewings and reviews are then associated with the show so others can decide what shows they want to see next. [show-journal.herokuapp.com](show-journal.herokuapp.com)
 
