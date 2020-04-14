@@ -7,7 +7,12 @@
             <p><%= viewing.review.body %> - <%= viewing.review.rating %>/5</p>
             <div class='row'>
                 <div class='col-sm'>
-                    <%= link_to "Edit Notes", edit_show_viewing_path(show, viewing) %>
+                    <%= link_to "Edit Entry", edit_show_viewing_path(show, viewing), class: 'btn btn-dark' %>
+                </div>
+                <div class='col-sm'>
+                    <%= form_tag show_viewing_path(show, viewing), method: 'delete' do %>
+                        <%= submit_tag "Delete This Entry", class: "btn btn-danger" %>
+                    <% end %>
                 </div>
             </div>
         <% end %>
