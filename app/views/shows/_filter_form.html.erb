@@ -2,7 +2,7 @@
         <%= select_tag 'filter', options_for_select({"All" => "all",
                                                     "Popular (5+ saved viewings)" => "popular", 
                                                     "From Nineteenth Century" => "from-nineteenth-century", 
-                                                    "From Twentienth Century" => "from-twentieth-century",
+                                                    "From Twentieth Century" => "from-twentieth-century",
                                                     "From Twentyfirst Century" => "from-twentyfirst-century",}, params[:filter]) %>
         <%= submit_tag "Filter", class: "btn btn-light" %>
     <% end %>
