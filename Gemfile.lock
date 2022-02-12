@@ -125,8 +125,8 @@ GEM
     multi_json (1.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    nio4r (2.5.2)
-    nio4r (2.5.2-java)
+    nio4r (2.5.8)
+    nio4r (2.5.8-java)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.9-java)
@@ -159,9 +159,9 @@ GEM
       method_source (~> 1.0)
       spoon (~> 0.0)
     public_suffix (4.0.3)
-    puma (4.3.3)
+    puma (4.3.11)
       nio4r (~> 2.0)
-    puma (4.3.3-java)
+    puma (4.3.11-java)
       nio4r (~> 2.0)
     rack (2.2.2)
     rack-proxy (0.6.5)
@@ -251,7 +251,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
@@ -306,7 +305,7 @@ DEPENDENCIES
   omniauth-facebook
   pg
   pry
-  puma (~> 4.1)
+  puma (~> 4.3)
   rack_session_access
   rails (~> 6.0.2, >= 6.0.2.1)
   rspec-rails (~> 4.0.0)
@@ -314,7 +313,6 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
